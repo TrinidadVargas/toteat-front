@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
         <title>Toteat App</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
@@ -16,20 +16,10 @@ export default function Home() {
         </h1>
 
         <div className={styles.grid}>
-          <a href="/statistics" className={styles.card}>
-            <h2>Estadísticas &rarr;</h2>
-          </a>
-
           <a className={styles.card}>
-            <h2>Menú &rarr;</h2>
-          </a>
-
-          <a className={styles.card}>
-            <h2>Personal &rarr;</h2>
-          </a>
-
-          <a className={styles.card}>
-            <h2>Pedidos &rarr;</h2>
+            <Link href="/statistics" >
+              <h2>Estadísticas &rarr;</h2>
+            </Link>
           </a>
         </div>
       </main>

@@ -1,4 +1,10 @@
+# Demo App for Toteat interview
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+<!-- git push -u origin main -->
+<!-- https://appdividend.com/2022/03/12/react-axios/ -->
+
 
 ## Getting Started
 

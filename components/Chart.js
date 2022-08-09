@@ -3,18 +3,18 @@ import {CategoryScale} from 'chart.js';
 import Chart from 'chart.js/auto';
 Chart.register(CategoryScale);
 import { Bar } from "react-chartjs-2";
-import { weekdayDataTotal, monthDataTotal, dayDataTotal } from '../utils/charts/dataToChartStructure.js';
+import { weekdayDataFilter, monthDataFilter, dayDataFilter } from '../utils/charts/dataToChartStructure.js';
 
 
-const BarChart = ({periodData, period, filter }) => {
+const BarChart = ({periodData, period, filter, indicator }) => {
   let data = {};
-  if (filter === 'total') {
+  if (filter === 'all') {
     if (period === 'month') {
-      data = monthDataTotal(periodData);
+      data = monthDataFilter(periodData, filter, indicator);
     } else if (period === 'weekday') {
-      data = weekdayDataTotal(periodData);
+      data = weekdayDataFilter(periodData, filter, indicator);
     } else if (period === 'day') {
-      data = dayDataTotal(periodData);
+      data = dayDataFilter(periodData, filter, indicator);
     }
   }
 

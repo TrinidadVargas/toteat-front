@@ -33,42 +33,51 @@ const sortDayData = (dayData) => {
   return data;
 };
 
-const dataTotalAmount = (data) => {
-  return data.map(item => item.total);
+const dataTotalAmount = (data, filter, indicator) => {
+  if (indicator === 'mean') {
+    return data.map(item => 
+      item[filter]['num_sales'] !== 0 ? item[filter]['total'] / item[filter]['num_sales'] : 0);
+  }
+  return data.map(item => item[filter][indicator]);
 };
 
-const dayDataTotalAmount =(data) => {
+const dayDataAllAmount =(data, filter, indicator) => {
+  if (indicator === 'mean') {
+    return data.map(dayArray => 
+      (dayArray.map(day => day ?
+        (day[filter]['num_sales'] !== 0 ? day[filter]['total'] / day[filter]['num_sales'] : 0) 
+        : null))
+    );
+  }
   return data.map(dayArray => 
-    (dayArray.map(day => day ? day.total : null))
+    (dayArray.map(day => day ? day[filter][indicator] : null))
   );
 };
 
-export const weekdayDataTotal = (weekdayData) => {
-  let data = {};
-  weekdayData.forEach(item => { data[item.date] = item.total; });
+export const weekdayDataFilter = (weekdayData, filter, indicator) => {
   return {
     datasets: [{
       label: 'Total de ventas',
-      data: dataTotalAmount(sortWeekdayData(weekdayData)),
+      data: dataTotalAmount(sortWeekdayData(weekdayData), filter, indicator),
       ...barChartStyles,
     }],
     labels: weekDayLabels,
   };
 };
 
-export const monthDataTotal = (monthData) => {
+export const monthDataFilter = (monthData, filter, indicator) => {
   return {
     datasets: [{
       label: 'Total de ventas',
-      data: dataTotalAmount(sortMonthData(monthData)),
+      data: dataTotalAmount(sortMonthData(monthData), filter, indicator),
       ...barChartStyles,
     }],
     labels: monthLabels,
   }
 };
 
-export const dayDataTotal = (dayData) => {
-  const data = dayDataTotalAmount(sortDayData(dayData));
+export const dayDataFilter = (dayData, filter, indicator) => {
+  const data = dayDataAllAmount(sortDayData(dayData), filter, indicator);
   return {
     datasets: data.map((dayArrayData, idx) => ({
       label: idx.toString(),

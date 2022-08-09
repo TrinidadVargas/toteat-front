@@ -1,7 +1,7 @@
 # Toteat - Desafío Técnico 
 ## By Trinidad Vargas
 
-Aplicación web en producción: https://toteat-front-lczyyc6jm-trinidadvargas.vercel.app/
+Aplicación web: https://toteat-front-lczyyc6jm-trinidadvargas.vercel.app/
 
 Backend: https://github.com/TrinidadVargas/toteat-backend
 

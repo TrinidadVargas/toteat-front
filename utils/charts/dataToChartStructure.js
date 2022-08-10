@@ -1,4 +1,5 @@
 import { barChartStyles } from './barChartColorOptions.js';
+import {dataValue, dayDataValue} from './filterValues.js';
 
 const monthLabels = ['Jan', 'Feb', 'Mar'];
 const weekDayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -33,51 +34,30 @@ const sortDayData = (dayData) => {
   return data;
 };
 
-const dataTotalAmount = (data, filter, indicator) => {
-  if (indicator === 'mean') {
-    return data.map(item => 
-      item[filter]['num_sales'] !== 0 ? item[filter]['total'] / item[filter]['num_sales'] : 0);
-  }
-  return data.map(item => item[filter][indicator]);
-};
-
-const dayDataAllAmount =(data, filter, indicator) => {
-  if (indicator === 'mean') {
-    return data.map(dayArray => 
-      (dayArray.map(day => day ?
-        (day[filter]['num_sales'] !== 0 ? day[filter]['total'] / day[filter]['num_sales'] : 0) 
-        : null))
-    );
-  }
-  return data.map(dayArray => 
-    (dayArray.map(day => day ? day[filter][indicator] : null))
-  );
-};
-
-export const weekdayDataFilter = (weekdayData, filter, indicator) => {
+export const weekdayDataFilter = (weekdayData, filter, option, indicator) => {
   return {
     datasets: [{
       label: 'Total de ventas',
-      data: dataTotalAmount(sortWeekdayData(weekdayData), filter, indicator),
+      data: dataValue(sortWeekdayData(weekdayData), filter, option, indicator),
       ...barChartStyles,
     }],
     labels: weekDayLabels,
   };
 };
 
-export const monthDataFilter = (monthData, filter, indicator) => {
+export const monthDataFilter = (monthData, filter, option, indicator) => {
   return {
     datasets: [{
       label: 'Total de ventas',
-      data: dataTotalAmount(sortMonthData(monthData), filter, indicator),
+      data: dataValue(sortMonthData(monthData), filter, option, indicator),
       ...barChartStyles,
     }],
     labels: monthLabels,
   }
 };
 
-export const dayDataFilter = (dayData, filter, indicator) => {
-  const data = dayDataAllAmount(sortDayData(dayData), filter, indicator);
+export const dayDataFilter = (dayData, filter, option, indicator) => {
+  const data = dayDataValue(sortDayData(dayData), filter, option, indicator);
   return {
     datasets: data.map((dayArrayData, idx) => ({
       label: idx.toString(),

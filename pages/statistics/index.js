@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
-import { Grid } from '@mantine/core';
-import FilterColumn from "../../components/FilterColumn";
+import React, { useState, useEffect } from "react";
+import { Container, Grid, Group, Select, SegmentedControl, Popover, Text, Button, Stack, ScrollArea } from '@mantine/core';
+import FilterArea from "../../components/FilterArea";
 import BarChart from '../../components/Chart';
 import statisticsApi from '../../api/statistics';
 
@@ -9,15 +9,15 @@ const defaultFilterSelection = {
   dateRange: [new Date(2019, 1, 1), new Date(2019, 3, 31)],
   finishDate: null,
   filter: 'all',
-  waiter: null,
-  cashier: null,
-  zone: null,
-  time: null,
+  waiter: 'Diana Arevalo',
+  cashier: 'Roberto Ortega',
+  zone: 'Salón',
+  time: 'dinner',
   indicator: 'mean',
 };
 
 const filterOptionsInit = {
-  period: ['month', 'day', 'weekday', 'specific'],
+  period: ['month', 'day', 'weekday'],
   indicator: ['total', 'mean', 'max', 'min', 'quantity'],
 };
 
@@ -41,7 +41,7 @@ function Income() {
         });
       })
       .catch((err) => {});
-    };
+  };
 
   useEffect(() => {
     if (allData === null)
@@ -51,29 +51,24 @@ function Income() {
   const selectedPeriodChange = (newPeriod) => {
     if (newPeriod !== filterSelection.period) {
       setFilterSelection({ ...filterSelection, period: newPeriod });
-      if (newPeriod !== 'specific') 
+      if (newPeriod !== 'specific')
         setData(allData[newPeriod].data);
     }
   };
 
   return (
     <div>
-      <h1>Income</h1>
-      <Grid>
-        <Grid.Col span={4}>
-          {filterOptions &&
-            <FilterColumn filterOptions={filterOptions}
-              filterSelection={filterSelection}
-              selectedPeriodChange={selectedPeriodChange}
-              setFilterSelection={setFilterSelection}
-          />}
-        </Grid.Col>
-        <Grid.Col span={8}>
-          {data && <BarChart periodData={data} period={filterSelection.period}
-            filter={filterSelection.filter} indicator={filterSelection.indicator}
-            option={filterSelection[filterSelection.filter]}/>}
-        </Grid.Col>
-      </Grid>
+      <Container>
+        {filterOptions &&
+          <FilterArea filterOptions={filterOptions}
+            filterSelection={filterSelection}
+            selectedPeriodChange={selectedPeriodChange}
+            setFilterSelection={setFilterSelection} />
+        }
+        {data && <BarChart periodData={data} period={filterSelection.period}
+          filter={filterSelection.filter} indicator={filterSelection.indicator}
+          option={filterSelection[filterSelection.filter]} />}
+      </Container>
     </div>
   );
 }

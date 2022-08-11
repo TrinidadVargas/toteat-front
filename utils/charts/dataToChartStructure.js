@@ -37,7 +37,7 @@ const sortDayData = (dayData) => {
 export const weekdayDataFilter = (weekdayData, filter, option, indicator) => {
   return {
     datasets: [{
-      label: 'Total de ventas',
+      label: `${indicator} of ticket`,
       data: dataValue(sortWeekdayData(weekdayData), filter, option, indicator),
       ...barChartStyles,
     }],
@@ -48,7 +48,7 @@ export const weekdayDataFilter = (weekdayData, filter, option, indicator) => {
 export const monthDataFilter = (monthData, filter, option, indicator) => {
   return {
     datasets: [{
-      label: 'Total de ventas',
+      label: `${indicator} of ticket`,
       data: dataValue(sortMonthData(monthData), filter, option, indicator),
       ...barChartStyles,
     }],
@@ -60,7 +60,7 @@ export const dayDataFilter = (dayData, filter, option, indicator) => {
   const data = dayDataValue(sortDayData(dayData), filter, option, indicator);
   return {
     datasets: data.map((dayArrayData, idx) => ({
-      label: idx.toString(),
+      label: `${indicator} ticket of day ${(idx + 1).toString()}`,
       data: dayArrayData,
       ...barChartStyles,
     })),

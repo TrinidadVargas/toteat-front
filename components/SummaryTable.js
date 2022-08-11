@@ -63,28 +63,25 @@ function Summary({ data, type, details }) {
   };
 
   return (
-    <>
-      <h2>Summary {type}</h2>
-        <ScrollArea style={{ width: '100%' }}>
-          <Table highlightOnHover style={{ minWidth: '1000px', overflow: 'hidden' }}>
-            <thead>
-              <tr>{columns.map((col, idx) => <th key={idx}>{col}</th>)}</tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><b>All</b></td>
-                {dataToTableRow(data.all)}
-              </tr>
-              {type === 'people' ? <>
-                {peopleDetailRows('Waiters', data.waiter)}
-                {peopleDetailRows('Cashiers', data.cashier)}
-              </> : <>
-                {zonesRows(data.zone, data.table, details.tables)}
-              </>}
-            </tbody>
-          </Table>
-        </ScrollArea>
-    </>
+    <ScrollArea style={{ width: '100%' ,marginTop: '25px'}}>
+      <Table highlightOnHover style={{ minWidth: '1000px', overflow: 'hidden' }}>
+        <thead>
+          <tr>{columns.map((col, idx) => <th key={idx}>{col}</th>)}</tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>All</b></td>
+            {dataToTableRow(data.all)}
+          </tr>
+          {type === 'people' ? <>
+            {peopleDetailRows('Waiters', data.waiter)}
+            {peopleDetailRows('Cashiers', data.cashier)}
+          </> : <>
+            {zonesRows(data.zone, data.table, details.tables)}
+          </>}
+        </tbody>
+      </Table>
+    </ScrollArea>
   );
 };
 

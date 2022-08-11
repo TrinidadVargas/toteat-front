@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Grid, Group, Select, SegmentedControl, Popover, Text, Button, Stack, ScrollArea } from '@mantine/core';
+import Head from 'next/head'
+import { Container } from '@mantine/core';
 import FilterArea from "../../components/FilterArea";
 import BarChart from '../../components/Chart';
 import statisticsApi from '../../api/statistics';
@@ -58,6 +59,9 @@ function Income() {
 
   return (
     <div>
+      <Head>
+        <title>Statistics</title>
+      </Head>
       <Container>
         {filterOptions &&
           <FilterArea filterOptions={filterOptions}

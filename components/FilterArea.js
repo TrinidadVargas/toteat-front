@@ -13,7 +13,7 @@ function FilterArea({filterOptions, filterSelection,
             <Button style={{width: '150px', marginBottom: '10px'}}>Help</Button>
           </Popover.Target>
           <Popover.Dropdown>
-            <Text size="sm">Get data per different periods and filter by waiter, cashier, zone or time. 
+            <Text size="sm">See the data per different periods and filter by waiter, cashier, zone or time. 
             Lunch is before 5pm and dinner is after 5 pm.</Text>
           </Popover.Dropdown>
         </Popover>
@@ -59,7 +59,7 @@ function FilterArea({filterOptions, filterSelection,
               { label: 'Time', value: 'time' }
             ]}
           />
-          <ScrollArea style={{width: '100%', height: '40px'}} scrollbarSize={2} scrollHideDelay={500}>
+          <ScrollArea style={{width: '100%', height: '45px'}} scrollbarSize={2} scrollHideDelay={500}>
             <Group spacing="xs" noWrap style={{ marginBottom: '15px'}}>
               {filterSelection.filter !== 'all' && 
                 filterOptions[filterSelection.filter].map((item) => (
@@ -71,9 +71,6 @@ function FilterArea({filterOptions, filterSelection,
             </Group>
           </ScrollArea>
         </Stack>
-
-        <br/>
-
       </Container>    
   </div>)
 }

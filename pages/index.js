@@ -17,19 +17,21 @@ export default function Home() {
           <Text>
             Here you can see data from your restaurant. We know how the metrics are different
             each day and how important it is to make decisions. There are different metrics
-            like average, maximum, minimum and total of the sales and also number of sales and
+            like total, average, maximum, minimum of the sales and also number of sales and
             time spent in the restaurant. Also you can group the data by day, month or weekday
             and filter by waiter, cashier, zone or table.
           </Text>
-
           <h2>Statistics</h2>
-
           <Link href="/statistics" passHref>
             <Button component="button" style={{width: '48%', margin: '5px'}}>Charts</Button>
           </Link>
           <Link href="/statistics/summary" passHref>
             <Button component="button" style={{width: '48%', margin: '5px'}}>Summary</Button>
           </Link>
+          <Text>
+            <b>Nota: </b> Si no se cargan los datos, por favor recargar la página ya que el primer request
+            al backend puede fallar. 
+          </Text>
         </Container>
       </AppShell>
       

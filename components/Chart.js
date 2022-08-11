@@ -21,7 +21,6 @@ const BarChart = ({periodData, period, filter, option, indicator }) => {
       <Bar 
         data={data}
         options={{ plugins: {
-            title: { display: true, text: 'ventas'},
             legend: { display: false, position: "bottom" }
         }}}
       />

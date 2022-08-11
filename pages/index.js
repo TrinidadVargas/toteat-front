@@ -29,7 +29,7 @@ export default function Home() {
             <Button component="button" style={{width: '48%', margin: '5px'}}>Summary</Button>
           </Link>
           <Text>
-            <b>Nota: </b> Si no se cargan los datos, por favor recargar la página ya que el primer request
+            <b>Nota:</b> Si no se cargan los datos, por favor recargar la página ya que el primer request
             al backend puede fallar. 
           </Text>
         </Container>

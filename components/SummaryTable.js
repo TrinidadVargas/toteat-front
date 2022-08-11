@@ -1,5 +1,6 @@
 import React from "react";
-import { Table, ScrollArea, Container } from '@mantine/core';
+import { Table, ScrollArea } from '@mantine/core';
+import { numberWithDots } from '../utils/formatValues/formatText';
 
 
 function Summary({ data, type, details }) {
@@ -12,7 +13,8 @@ function Summary({ data, type, details }) {
     rData.min, rData.quantity, Math.round(rData.diners / details.days)];
     const peopleData = [...commonData, Math.round(rData.minutes / rData.quantity)];
     const tableData = [...commonData, Math.round(rData.minutes / details.days)];
-    return type === 'people' ? peopleData : tableData;
+    return type === 'people' ? peopleData.map((n) => numberWithDots(n)) : 
+      tableData.map((n) => numberWithDots(n));
   };
 
   const dataToTableRow = (data) => {
